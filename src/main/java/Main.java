@@ -34,7 +34,7 @@ public class Main extends Application {
                 }
 
                 try {
-                    Thread.sleep(150);
+                    Thread.sleep(3000);
                 } catch( InterruptedException e ){
                     e.printStackTrace();
                 }
