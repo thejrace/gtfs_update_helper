@@ -38,47 +38,43 @@ public class Main extends Application {
             primaryStage.show();
             StartSplashScreenController controller = loader.getController();
 
-            Thread th = new Thread(new Runnable() {
-                @Override
-                public void run() {
+            Thread th = new Thread(() -> {
+                controller.updateStatus("Yükleniyor..", "Lütfen bekleyin..");
 
-                    controller.updateStatus("Yükleniyor..", "Lütfen bekleyin..");
-
-                    if( Common.checkFile( "app_config.json" ) ){
-                        JSONObject config = new JSONObject( Common.readJSONData("app_config.json"));
-                        STATIC_LOCATION = config.getString("installDir");
-                    } else {
-                        controller.updateStatus("Hata oluştu. [STAT_LOC_FAIL]", "Sistem yöneticisine bu hatayı bildirin.");
-                        controller.initError();
-                        return;
-                    }
-
-                    ThreadHelper.delay(3000);
-
-                    Path sourcePath      = Paths.get(STATIC_LOCATION + "GFTS_new.exe");
-                    Path destinationPath = Paths.get(STATIC_LOCATION + "GFTS.exe");
-                    try {
-                        Files.move(sourcePath, destinationPath,
-                                StandardCopyOption.REPLACE_EXISTING);
-                    } catch (IOException e) {
-                        //moving file failed.
-                        controller.updateStatus("Hata oluştu. [FILE_MOV_FAIL]", "Sistem yöneticisine bu hatayı bildirin.");
-                        controller.initError();
-                        return;
-                    }
-
-                    controller.initTick();
-                    controller.updateStatus("Tamamlandı.", "Bu pencere kapandıktan sonra, programı tekrar başlatabilirsiniz.");
-
-                    ThreadHelper.delay(3000);
-
-                    Platform.runLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            Platform.exit();
-                        }
-                    });
+                if( Common.checkFile( "app_config.json" ) ){
+                    JSONObject config = new JSONObject( Common.readJSONData("app_config.json"));
+                    STATIC_LOCATION = config.getString("installDir");
+                } else {
+                    controller.updateStatus("Hata oluştu. [STAT_LOC_FAIL]", "Sistem yöneticisine bu hatayı bildirin.");
+                    controller.initError();
+                    return;
                 }
+
+                ThreadHelper.delay(3000);
+
+                Path sourcePath      = Paths.get(STATIC_LOCATION + "GFTS_new.exe");
+                Path destinationPath = Paths.get(STATIC_LOCATION + "GFTS.exe");
+                try {
+                    Files.move(sourcePath, destinationPath,
+                            StandardCopyOption.REPLACE_EXISTING);
+                } catch (IOException e) {
+                    //moving file failed.
+                    controller.updateStatus("Hata oluştu. [FILE_MOV_FAIL]", "Sistem yöneticisine bu hatayı bildirin.");
+                    controller.initError();
+                    return;
+                }
+
+                controller.initTick();
+                controller.updateStatus("Tamamlandı.", "Bu pencere kapandıktan sonra, programı tekrar başlatabilirsiniz.");
+
+                ThreadHelper.delay(3000);
+
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        Platform.exit();
+                    }
+                });
             });
             th.setDaemon(true);
             th.start();
