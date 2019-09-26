@@ -1,0 +1,333 @@
+.root {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-box-border: transparent;
+    -fx-padding:0;
+    -fx-text-fill:#272727;
+    -fx-background-color:#302e2e;
+}
+.scroll-pane  {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-box-border: transparent;
+    -fx-background-color: transparent;
+}
+
+.scroll-pane > .viewport {
+    -fx-box-border: transparent;
+    -fx-background-color: transparent;
+}
+.button {
+    -fx-cursor:hand;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-background-insets: 0;
+}
+.text{
+    -fx-font-smoothing-type: gray;
+}
+.label {
+    -fx-font-smoothing-type: gray;
+    -fx-font-weight:bold;
+}
+
+
+.lbl-h1 {
+    -fx-font-size:26;
+}
+.lbl-h2 {
+    -fx-font-size:22;
+}
+.lbl-h3 {
+    -fx-font-size:18;
+}
+.lbl-h4 {
+    -fx-font-size:16;
+}
+.lbl-h5 {
+    -fx-font-size:13;
+}
+.lbl-small {
+    -fx-font-size:9;
+}
+
+.lbl-white {
+    -fx-text-fill:#fff;
+}
+.lbl-gray1 {
+    -fx-text-fill: #a2a2a2;
+}
+.lbl-gitas {
+    -fx-text-fill:#a754bb;
+}
+.lbl-yellow {
+    -fx-text-fill: #ffd835;
+}
+
+.lbl-info {
+    -fx-text-fill: #1f76d4;
+}
+.lbl-danger {
+    -fx-text-fill: #ef2906;
+}
+
+.content-btn {
+    -fx-font-weight:bold;
+    -fx-padding:5 10 5 10;
+    -fx-border-radius:4;
+}
+
+.content-btn-default {
+    -fx-background-color: #505c72;
+    -fx-border-color: #3c4257;
+    -fx-text-fill:#d3d3d3;
+}
+.content-btn-success {
+    -fx-background-color: #29b95d;
+    -fx-border-color: #1e773c;
+    -fx-text-fill:#d3d3d3;
+}
+
+.content-btn-warning {
+    -fx-background-color: #ffd835;
+    -fx-border-color: #ffc668;
+    -fx-text-fill: #626127;
+    -jfx-rippler-fill:#ff0000;
+}
+
+.content-btn-danger {
+    -fx-background-color: #d82806;
+    -fx-border-color: #981f06;
+    -fx-text-fill:#d3d3d3;
+}
+
+.content-btn-info {
+    -fx-background-color: #48bdd8;
+    -fx-border-color: #559fd8;
+    -fx-text-fill:#fff;
+}
+
+.content-btn-gitas {
+    -fx-background-color: #6f4283;
+    -fx-border-color: #734887;
+    -fx-text-fill:#fff;
+}
+
+
+/* popup styles */
+.popup-overlay {
+    -fx-background-color:#000;
+    -fx-opacity: 0.3;
+
+}
+
+
+/* Main wrapper */
+.main-wrapper {
+    -fx-background-color:#302e2e;
+    /*-fx-padding:10;*/
+}
+
+
+/* Content controller styles */
+.content-container {
+    -fx-padding:10;
+    -fx-background-color: transparent;
+}
+
+.content-container .title {
+
+}
+
+.titled-pane.s1 > .title {
+    -fx-background-color:   linear-gradient(#293034 30%, #181f24 100%);
+
+}
+.titled-pane.s1 > .title .text {
+    -fx-fill:#d3d3d3;
+}
+.titled-pane.s1:focused > .title {
+    -fx-color: -fx-focus-color;
+}
+.titled-pane.s1 > *.content {
+    -fx-background-color: #14171c;
+}
+.titled-pane.s1 .split-pane-divider {
+    -fx-background-color:#292f33;
+    -fx-border:none;
+}
+
+.menu-bar {
+    -fx-background-color:#3c3f41;
+    -fx-padding:0;
+}
+
+/*** Top-level menu itself (not selected / hovered) ***/
+.menu-bar > .container > .menu-button {
+    -fx-background-color:#3c3f41;
+    -fx-padding:8 8 6 8;
+}
+
+/*** Top-level menu's label (selected / hovered) ***/
+.menu-bar > .container > .menu-button:hover,
+.menu-bar > .container > .menu-button:focused,
+.menu-bar > .container > .menu-button:showing {
+    -fx-background-color:#7b3275;
+}
+
+.menu-bar > .container > .menu-button .label {
+    -fx-text-fill: #9c9c9c;
+    -fx-font-weight:normal;
+    -fx-font-size:12;
+}
+
+.context-menu {
+    -fx-background-color:#3c3f41;
+}
+
+
+.menu-item {
+    -fx-background-color:#3c3f41;
+}
+
+.menu-item .label {
+    -fx-text-fill: #6e7072;
+
+}
+
+.menu-item:focused {
+    -fx-background-color:#7b3275;
+}
+
+
+.fts-box {
+    /*-fx-background-radius: 5;*/
+    -fx-background-color:   linear-gradient(#222020 0%, #272727 100%);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2),15, 0, 0, 0);
+
+}
+
+.fts-header-container{
+    /*-fx-background-color:#a754bb;*/
+    -fx-background-color:   radial-gradient(center 10% 0%, radius 100%, #613871, rgba(255,255,255,0));
+
+}
+
+.fts-box-circle {
+    -fx-border-width:3;
+    -fx-border-radius:50%;
+    -fx-background-radius:50%;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+.fts-box-led {
+    -fx-stroke-width:0;
+}
+.fts-active-fill {
+    -fx-fill: #00ff36;
+    -fx-background-color:#00ff36;
+}
+.fts-active-border-fill {
+    /*-fx-border-color: #00ff36;*/
+    -fx-border-color:   linear-gradient(#00ff36 0%, #bbffbb 40%, #006d19 100%);
+}
+.fts-finished-fill{
+    -fx-fill: #c5c5c5;
+    -fx-background-color: #c5c5c5;
+}
+.fts-finished-border-fill{
+    /*-fx-border-color: #c5c5c5;*/
+    -fx-border-color:   linear-gradient(#918b91 0%, #b6b0b6 40%, #696c6c 100%);
+}
+.fts-waiting-fill {
+    -fx-fill: #fff;
+    -fx-background-color: #fff;
+}
+.fts-waiting-border-fill {
+    /*-fx-border-color: #fff;*/
+    -fx-border-color:   linear-gradient(#ffffff 0%, #f9f6ff 40%, #7e7e7e 100%);
+}
+.fts-stopped-fill{
+    -fx-fill: #ff8686;
+    -fx-background-color: #ff8686;
+}
+.fts-stopped-border-fill{
+    /*-fx-border-color: #ff8686;*/
+    -fx-border-color:   linear-gradient(#ff8686 0%, #ff8686 40%, #924949 100%);
+}
+.fts-cancelled-fill {
+    -fx-fill: #ff4242;
+    -fx-background-color: #ff4242;
+}
+.fts-cancelled-border-fill {
+    /*-fx-border-color: #ff4242;*/
+    -fx-border-color:   linear-gradient(#ff4242 0%, #ff4242 40%, #a22424 100%);
+}
+
+.emp-box-btn-icon {
+    -fx-fill: #969696
+}
+
+.emp-box-btn{
+    -fx-background-color: #4a4a4a;
+    -fx-background-radius:5;
+}
+.emp-box-btn:hover {
+    -fx-background-color:#fff;
+}
+
+.emp-box-btn:hover .emp-box-btn-icon{
+    -fx-fill:#302e2e
+}
+
+.tab-pane *.tab-header-area *.tab-header-background {
+    -fx-background-color:#242424;
+}
+.tab-pane {
+    -fx-tab-min-height:35px;
+    -fx-tab-max-height:35px;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-text-fill:#272727;
+}
+
+.tab {
+    -fx-font-size: 12;
+    -fx-background-color:#7b3275;
+    -fx-cursor:hand;
+}
+
+.tab-pane .tab-header-area {
+    -fx-padding:0;
+}
+
+.tab .tab-label{
+    -fx-padding:6 15;
+    -fx-text-fill:#fff;
+    -fx-font-weight:bold;
+}
+.tab:selected {
+    -fx-background-color:#302e2e;
+    -fx-cursor:default;
+
+}
+.tab:selected .tab-label{
+
+}
+
+.tab .icon {
+    -fx-fill:#d3d3d3;
+}
+
+.sub-nav-bar{
+    -fx-background-color:#3c3f41;
+    -fx-border-width: 1 0 0 0;
+    -fx-border-color:#656d72;
+    -fx-padding:0 5;
+}
+
+.sub-nav-bar .icon-btn {
+    -fx-background-color:transparent;
+}
+.sub-nav-bar .icon-btn:hover {
+    -fx-background-color:#616161;
+}

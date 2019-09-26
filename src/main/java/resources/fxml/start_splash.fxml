@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="500.0" styleClass="main-bg-color" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/8.0.201" xmlns:fx="http://javafx.com/fxml/1" fx:controller="StartSplashScreenController">
+   <children>
+      <ImageView fitHeight="40.0" fitWidth="70.0" layoutX="218.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="218.0">
+         <image>
+            <Image url="@../img/glogo.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="149.0" layoutY="71.0" text="Filo Takip Sistemi Yükleme">
+         <styleClass>
+            <String fx:value="lbl-white" />
+            <String fx:value="lbl-h4" />
+         </styleClass>
+      </Label>
+      <Label fx:id="uiNotfLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="13.0" layoutY="108.0" prefHeight="32.0" prefWidth="475.0" text="Yükleniyor..." textAlignment="CENTER">
+         <styleClass>
+            <String fx:value="lbl-yellow" />
+            <String fx:value="lbl-h2" />
+         </styleClass>
+      </Label>
+      <Label fx:id="uiSubNotfLabel" alignment="CENTER" layoutX="13.0" layoutY="239.0" prefHeight="17.0" prefWidth="475.0" text="Lütfen bekleyin.." textAlignment="CENTER">
+         <styleClass>
+            <String fx:value="lbl-gray1" />
+            <String fx:value="lbl-h5" />
+         </styleClass>
+      </Label>
+      <ImageView fitHeight="52.0" fitWidth="52.0" layoutX="224.0" layoutY="158.0">
+         <image>
+            <Image url="@../img/loader.gif" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="uiTick" fitHeight="32.0" fitWidth="32.0" layoutX="234.0" layoutY="168.0" visible="false">
+         <image>
+            <Image url="@../img/tick.gif" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="uiError" fitHeight="68.0" fitWidth="73.0" layoutX="214.0" layoutY="150.0" visible="false">
+         <image>
+            <Image url="@../img/error.gif" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
