@@ -7,7 +7,12 @@
  */
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -22,47 +27,65 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Thread th = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("Update helper started!");
-                if( Common.checkFile( "app_config.json" ) ){
-                    JSONObject config = new JSONObject( Common.readJSONData("app_config.json"));
-                    STATIC_LOCATION = config.getString("installDir");
-                } else {
-                    Platform.exit();
-                }
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/fxml/start_splash.fxml"));
+            Parent content = loader.load();
+            primaryStage.setTitle("Gitas FTS Setup");
+            primaryStage.initStyle(StageStyle.UNDECORATED);
+            primaryStage.getIcons().add(new Image(getClass().getResource("/img/gpts_setup_ico.png").toExternalForm()));
+            primaryStage.setScene( new Scene(content, 500, 280 ));
+            primaryStage.show();
+            StartSplashScreenController controller = loader.getController();
 
-                try {
-                    Thread.sleep(3000);
-                } catch( InterruptedException e ){
-                    e.printStackTrace();
-                }
-                System.out.println("RENAME THREAD START");
-                Path sourcePath      = Paths.get(STATIC_LOCATION + "GFTS_new.exe");
-                Path destinationPath = Paths.get(STATIC_LOCATION + "GFTS.exe");
-                try {
-                    Files.move(sourcePath, destinationPath,
-                            StandardCopyOption.REPLACE_EXISTING);
-                } catch (IOException e) {
-                    //moving file failed.
-                    e.printStackTrace();
-                }
-                try {
-                    Thread.sleep(1000);
-                } catch( InterruptedException e ){
-                    e.printStackTrace();
-                }
-                Platform.runLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        Platform.exit();
+            Thread th = new Thread(new Runnable() {
+                @Override
+                public void run() {
+
+                    controller.updateStatus("Yükleniyor..", "Lütfen bekleyin..");
+
+                    if( Common.checkFile( "app_config.json" ) ){
+                        JSONObject config = new JSONObject( Common.readJSONData("app_config.json"));
+                        STATIC_LOCATION = config.getString("installDir");
+                    } else {
+                        controller.updateStatus("Hata oluştu. [STAT_LOC_FAIL]", "Sistem yöneticisine bu hatayı bildirin.");
+                        controller.initError();
+                        return;
                     }
-                });
-            }
-        });
-        th.setDaemon(true);
-        th.start();
+
+                    ThreadHelper.delay(3000);
+
+                    Path sourcePath      = Paths.get(STATIC_LOCATION + "GFTS_new.exe");
+                    Path destinationPath = Paths.get(STATIC_LOCATION + "GFTS.exe");
+                    try {
+                        Files.move(sourcePath, destinationPath,
+                                StandardCopyOption.REPLACE_EXISTING);
+                    } catch (IOException e) {
+                        //moving file failed.
+                        controller.updateStatus("Hata oluştu. [FILE_MOV_FAIL]", "Sistem yöneticisine bu hatayı bildirin.");
+                        controller.initError();
+                        return;
+                    }
+
+                    controller.initTick();
+                    controller.updateStatus("Tamamlandı.", "Bu pencere kapandıktan sonra, programı tekrar başlatabilirsiniz.");
+
+                    ThreadHelper.delay(3000);
+
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            Platform.exit();
+                        }
+                    });
+                }
+            });
+            th.setDaemon(true);
+            th.start();
+
+        } catch( Exception e ){
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args){
